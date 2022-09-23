@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+    <title>USER</title>
+</head>
+<body>
+    {% for user in users %}
+    <li>{{users}}</li>
+    <a class="btn btn-warning">Edit</a>
+    <a class="btn btn-danger">Delete</a>
+{% endfor %}
+<a class="btn btn-success" href="/AppCoder/create_user">+Agregar Usuario</a>
+
+{% for user in users %}
+    <li>
+        {{users}}
+        <a class="btn btn-warning">Edith</a>
+        <a href="/AppCoder/delete_user/{{user.email}}" class="btn btn-danger">Delete</a>
+    </li>
+{% endfor %}
+</body>
+</html>
