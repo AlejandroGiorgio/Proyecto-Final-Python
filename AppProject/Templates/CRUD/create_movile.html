@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>REGISTRAR AUTOMOVIL</title>
 </head>
 <body>
-    <form class="formDataUsers" method="POST" action="/AppProject/create_user/"> {% csrf_token %}
-        <input type="text" name="name" placeholder="nombre">
-        <input type="text" name="lastName" placeholder="Apellido">
-        <input type="email" name="email" placeholder="email">
+    <form class="formDataMoviles" method="POST" action="/AppProject/create_movile/"> {% csrf_token %}
+        <input type="text" name="carPatent" placeholder="Patente">
+        <input type="text" name="carBrand" placeholder="Modelo">
+        <input type="number" name="carYear" placeholder="Año">
         <button type="submit" class="btn btn-primary btndj">Registrar</button>
     </form>
 </body>
