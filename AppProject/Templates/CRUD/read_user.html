@@ -14,13 +14,19 @@
     <a class="btn btn-warning">Edit</a>
     <a class="btn btn-danger">Delete</a>
 {% endfor %}
-<a class="btn btn-success" href="/AppCoder/create_user">+Agregar Usuario</a>
+<a class="btn btn-success" href="/AppProject/create_user">+Agregar Usuario</a>
+<br>
+<br>
+<a class="btn btn-success" href="/AppProject/create_driver">+Agregar Conductor</a>
+<br>
+<br>
+<a class="btn btn-success" href="/AppProject/create_movile">+Agregar Automovil</a>
 
 {% for user in users %}
     <li>
         {{users}}
         <a class="btn btn-warning">Edith</a>
-        <a href="/AppCoder/delete_user/{{user.email}}" class="btn btn-danger">Delete</a>
+        <a href="/AppProject/delete_user/{{user.email}}" class="btn btn-danger">Delete</a>
     </li>
 {% endfor %}
 </body>

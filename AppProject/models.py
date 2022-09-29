@@ -14,7 +14,7 @@ class Driver(models.Model):
     name = models.CharField(max_length=30)
     lastName = models.CharField(max_length=30)
     email = models.EmailField()
-    idDriver = models.IntegerField()
+    registry = models.IntegerField()
 
 class Movile(models.Model):
     carPatent = models.CharField(max_length=30)
