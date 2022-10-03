@@ -10,10 +10,9 @@ html {
 body{
       background-position: center center;
       background-size: cover;
-      background-color: black;
-      height: 140vh;
 
-}
+    }
+
 #colorLegend{
     color: brown;
     font-size: 75px;

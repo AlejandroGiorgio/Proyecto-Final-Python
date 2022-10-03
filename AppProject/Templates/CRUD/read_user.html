@@ -9,8 +9,8 @@
     <title>USER</title>
 </head>
 <body>
-    {% for user in users %}
-    <li>{{users}}</li>
+    {% for users in user %}
+    <li>{{user}}</li>
     <a class="btn btn-warning">Edit</a>
     <a class="btn btn-danger">Delete</a>
 {% endfor %}
@@ -22,9 +22,9 @@
 <br>
 <a class="btn btn-success" href="/AppProject/create_movile">+Agregar Automovil</a>
 
-{% for user in users %}
+{% for users in user %}
     <li>
-        {{users}}
+        {{user}}
         <a class="btn btn-warning">Edith</a>
         <a href="/AppProject/delete_user/{{user.email}}" class="btn btn-danger">Delete</a>
     </li>
