@@ -1,6 +1,6 @@
 from django.urls import path
 from AppProject.views import *
-#El debug esta ACA. Por algun motivo el contrenido de URLPATTERNS crashea. Si se borran los path levanta
+
 urlpatterns = [
     path('', home),
     path('create_driver/', create_driver),
@@ -12,4 +12,5 @@ urlpatterns = [
     path('create_driver/', create_driver),
     path('create_movile/', create_movile),
 ]
+
 

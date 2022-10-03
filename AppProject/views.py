@@ -19,7 +19,7 @@ def create_user(request):
 
 def read_user(request):
     users = User.objects.all() #trae todo
-    return render (request, "CRUD/read_user.html", {"user":users})
+    return render (request, "CRUD/read_user.html", {"users":users})
 
 def update_user(request, user_email):
     user = User.objects.get(email=user_email)
@@ -28,8 +28,8 @@ def update_user(request, user_email):
         formulario=form_user(request.POST)
         if formulario.is_valid():
             informacion=formulario.cleaned_data
-            user.nombre=informacion['nombre']
-            user.apellido=informacion['apellido']
+            user.name=informacion['nombre']
+            user.lastName=informacion['apellido']
             user.email=informacion['email']
             user.save()
             user=User.objects.all()

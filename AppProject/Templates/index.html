@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME PAGE</title>
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static 'css/estilos.css'%}">
+   
+    <title>AppProject</title>
 </head>
 <body>
+<<<<<<< HEAD
     <a class="btn btn-success" href="/AppProject/read_user">Interfaz de la webpage</a>
+=======
+  
+  <!--<a class="btn btn-success" href="/AppProject/read_user">Interfaz de la webpage</a>-->
+
+
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+
+    <!-- Links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/AppProject/create_user">Agregar usuario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/AppProject/create_driver">Agregar conductor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/AppProject/create_movile">Agregar vehiculo</a>
+        </li>
+      </ul>
+  </nav>
+
+  <div>
+    <form class="formDataEstudiantes" action="/AppCoder/buscar_estudiante/" method="GET">
+        <input type="email" name="email" placeholder="email">
+        <button type="submit" class="btn btn-primary btndj">Buscar</button>
+    </form>
+</div>
+<div>
+
+>>>>>>> 0a1cd0914f08768deefb03519bf76ba291565c9e
 </body>
 </html>
