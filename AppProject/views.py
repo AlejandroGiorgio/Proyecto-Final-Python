@@ -12,8 +12,7 @@ def create_user(request):
     if request.method == 'POST':
         user = User(name= request.POST["name"], lastName= request.POST["lastName"], email= request.POST["email"])
         user.save()
-        users = User.objects.all() #trae todo
-        return render (request, "CRUD/read_user.html", {"user":users})
+        return redirect("/")
 
     return render(request, "CRUD/create_user.html")
 
@@ -48,12 +47,14 @@ def create_driver(request):
     if request.method == 'POST':
         driver = Driver(name= request.POST["name"], lastName= request.POST["lastName"], email= request.POST["email"], registry= request.POST["registry"])
         driver.save()
+        return redirect("/")
     return render(request, "CRUD/create_driver.html")
 
 def create_movile(request):
     if request.method == 'POST':
         movile = Movile(carPatent= request.POST["carPatent"], carBrand= request.POST["carBrand"], year=request.POST["carYear"])
         movile.save()
+        return redirect("/")
     return render(request, "CRUD/create_movile.html")
 
 def home(request):
