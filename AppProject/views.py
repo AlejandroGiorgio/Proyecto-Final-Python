@@ -1,6 +1,6 @@
 from operator import index
 from unicodedata import name
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 from pathlib import Path
@@ -19,7 +19,7 @@ def create_user(request):
 
 def read_user(request):
     users = User.objects.all() #trae todo
-    return render (request, "CRUD/read_user.html", {"users":users})
+    return render (request, "CRUD/read_user.html", {"user":users})
 
 def update_user(request, user_email):
     user = User.objects.get(email=user_email)
@@ -60,3 +60,12 @@ def home(request):
     doc=loader.get_template("index.html")
     doc2=doc.render()
     return HttpResponse (doc2)
+
+def search_user(request):
+    if request.GET["email"]:
+        email = request.GET["email"]
+        user = User.objects.filter(email__icontains = email) 
+        return render(request, "index.html", {"users": user})
+    else:
+        respuesta = "No hay registro"
+    return HttpResponse(respuesta)

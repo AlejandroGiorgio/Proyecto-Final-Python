@@ -11,6 +11,7 @@ urlpatterns = [
     path('delete_user/', delete_user ),
     path('create_driver/', create_driver),
     path('create_movile/', create_movile),
+    path('search_user/', search_user)
 ]
 
 
