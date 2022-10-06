@@ -7,8 +7,8 @@ class User(models.Model):
     lastName = models.CharField(max_length=30)
     email = models.EmailField()
 
-    def __srt__(self):
-        return f"nombre: {self.name} - apellido: {self.lastName} - email: {self.email}"
+    def __str__(self):
+        return f"Nombre:{self.name} - Apellido:{self.lastName} - Email:{self.email}"
 
 class Driver(models.Model):
     name = models.CharField(max_length=30)

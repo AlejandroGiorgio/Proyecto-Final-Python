@@ -7,10 +7,12 @@
     <title>Document</title>
 </head>
 <body>
-    {% for for user in users %}
+    {% for for users in user %}
     <li>
         {{users}}
         <a class="btn btn-warning">Edith</a>
         <a href="/AppCoder/delete_user/{{user.email}}" class="btn btn-danger">Delete</a>
+    </li>
+    {{% endfor %}}
 </body>
 </html>

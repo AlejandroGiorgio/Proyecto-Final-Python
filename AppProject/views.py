@@ -5,43 +5,51 @@ from django.http import HttpResponse
 from django.template import loader
 from pathlib import Path
 from AppProject.models import *
-from AppProject.forms import *
+from AppProject.forms import form_user
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 # Create your views here.
 
 def create_user(request):
     if request.method == 'POST':
         user = User(name= request.POST["name"], lastName= request.POST["lastName"], email= request.POST["email"])
         user.save()
-        return redirect("/")
+        users = User.objects.all()
+        return render(request, "CRUD/read_user.html", {"user": users})
+        #return redirect("/")
 
     return render(request, "CRUD/create_user.html")
+    
 
 def read_user(request):
     users = User.objects.all() #trae todo
     return render (request, "CRUD/read_user.html", {"user":users})
 
-def update_user(request, user_email):
-    user = User.objects.get(email=user_email)
+def update_user(request, user_id):
+    user = User.objects.get(id=user_id)
 
     if request.method == 'POST':
         formulario=form_user(request.POST)
+        
         if formulario.is_valid():
             informacion=formulario.cleaned_data
-            user.name=informacion['nombre']
-            user.lastName=informacion['apellido']
+            user.name=informacion['name']
+            user.lastName=informacion['lastName']
             user.email=informacion['email']
             user.save()
-            user=User.objects.all()
             read_user()
+            #users=User.objects.all()
+            #return render(request, "CRUD/read_user.html", {"user": users})
+            
         else:
-            formulario=form_user(initial={'nombre':user.name, 'apellido':user.lastName, 'email':user.email})
+            formulario=form_user(initial={'name':user.name, 'lastName':user.lastName, 'email':user.email})
+        return render(request,"estudiantesCRUD/update_user.html", {"formulario": formulario})
 
-def delete_user(request, user_email):
-    user = User.objects.get(email = user_email)
+def delete_user(request, user_id):
+    user = User.objects.get(id = user_id)
     user.delete()
-
     users = User.objects.all()    
-    return render(request, "CRUD/read_user.html", {"users": users})
+    return render(request, "CRUD/read_user.html", {"user": users})
 
 def create_driver(request):
     if request.method == 'POST':
