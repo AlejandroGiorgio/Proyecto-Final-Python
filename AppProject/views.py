@@ -78,7 +78,6 @@ def search_user(request):
     else:
         respuesta = "No hay registro"
     return HttpResponse(respuesta)
-<<<<<<< HEAD
 
 def login_request(request):
     if request.method == 'POST':
@@ -115,5 +114,3 @@ def register(request):
 
     form = UserCreationForm()
     return render(request, "register.html", {'form': form})
-=======
->>>>>>> parent of ecb27a8 (aguegue login y registro)
