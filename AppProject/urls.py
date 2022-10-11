@@ -9,7 +9,9 @@ urlpatterns = [
     path('read_user/', read_user),
     path('update_user/<user_id>', update_user),
     path('delete_user/<user_id>', delete_user),
-    path('search_user/', search_user)
+    path('search_user/', search_user),
+    path('login/', login_request),
+    path('register/', register),
 ]
 
 

@@ -8,6 +8,7 @@ from AppProject.models import *
 from AppProject.forms import form_user
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login, logout, authenticate
 # Create your views here.
 
 def create_user(request):
@@ -78,3 +79,39 @@ def search_user(request):
     else:
         respuesta = "No hay registro"
     return HttpResponse(respuesta)
+
+def login_request(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data = request.POST)
+        if form.is_valid():
+            user = form.cleaned_data.get('username')
+            pwd = form.cleaned_data.get('password')
+
+            user = authenticate(username = user, password = pwd)
+
+            if user is not None:
+                login(request, user)
+                avatar = Avatar.objects.filter(user = request.user.id)
+                try:
+                    avatar = avatar[0].image.url
+                except:
+                    avatar = None
+                return render(request, 'index.html', {'avatar': avatar})
+            else:
+                return render(request, "login.html", {'form':form})
+        else:
+            return render(request, "login.html", {'form':form})
+    form = AuthenticationForm()
+    return render(request, 'login.html', {'form': form})
+
+def register(request):
+    form = UserCreationForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect("/AppCoder/login")
+        else:#decidi regresar el formulario con error
+            return render(request, "register.html", {'form': form})
+
+    form = UserCreationForm()
+    return render(request, "register.html", {'form': form})
