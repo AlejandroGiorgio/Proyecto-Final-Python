@@ -37,13 +37,13 @@ def update_user(request, user_id):
             user.lastName=informacion['lastName']
             user.email=informacion['email']
             user.save()
-            read_user()
-            #users=User.objects.all()
-            #return render(request, "CRUD/read_user.html", {"user": users})
+            read_user(request)
+            users=User.objects.all()
+            return render(request, "CRUD/read_user.html", {"user": users})
             
-        else:
+    else:
             formulario=form_user(initial={'name':user.name, 'lastName':user.lastName, 'email':user.email})
-        return render(request,"estudiantesCRUD/update_user.html", {"formulario": formulario})
+    return render(request,"CRUD/update_user.html", {"formulario": formulario})
 
 def delete_user(request, user_id):
     user = User.objects.get(id = user_id)
