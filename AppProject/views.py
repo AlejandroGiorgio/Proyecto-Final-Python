@@ -8,7 +8,6 @@ from AppProject.models import *
 from AppProject.forms import form_user
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
 # Create your views here.
 
 def create_user(request):
@@ -79,6 +78,7 @@ def search_user(request):
     else:
         respuesta = "No hay registro"
     return HttpResponse(respuesta)
+<<<<<<< HEAD
 
 def login_request(request):
     if request.method == 'POST':
@@ -115,3 +115,5 @@ def register(request):
 
     form = UserCreationForm()
     return render(request, "register.html", {'form': form})
+=======
+>>>>>>> parent of ecb27a8 (aguegue login y registro)
