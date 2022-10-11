@@ -110,7 +110,7 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect("/AppCoder/login")
-        else:#decidi regresar el formulario con error
+        else:
             return render(request, "register.html", {'form': form})
 
     form = UserCreationForm()
