@@ -117,7 +117,7 @@ def register(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect("/AppCoder/login")
+            return redirect("/AppProject/login")
         else:
             return render(request, "register.html", {'form': form})
 
