@@ -9,8 +9,10 @@ from AppProject.forms import form_user
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def create_user(request):
     if request.method == 'POST':
         user = User(name= request.POST["name"], lastName= request.POST["lastName"], email= request.POST["email"])
@@ -21,11 +23,12 @@ def create_user(request):
 
     return render(request, "CRUD/create_user.html")
     
-
+@login_required
 def read_user(request):
     users = User.objects.all() #trae todo
     return render (request, "CRUD/read_user.html", {"user":users})
 
+@login_required
 def update_user(request, user_id):
     user = User.objects.get(id=user_id)
 
@@ -46,12 +49,14 @@ def update_user(request, user_id):
             formulario=form_user(initial={'name':user.name, 'lastName':user.lastName, 'email':user.email})
     return render(request,"CRUD/update_user.html", {"formulario": formulario})
 
+@login_required
 def delete_user(request, user_id):
     user = User.objects.get(id = user_id)
     user.delete()
     users = User.objects.all()    
     return render(request, "CRUD/read_user.html", {"user": users})
 
+@login_required
 def create_driver(request):
     if request.method == 'POST':
         driver = Driver(name= request.POST["name"], lastName= request.POST["lastName"], email= request.POST["email"], registry= request.POST["registry"])
@@ -59,6 +64,7 @@ def create_driver(request):
         return redirect("/")
     return render(request, "CRUD/create_driver.html")
 
+@login_required
 def create_movile(request):
     if request.method == 'POST':
         movile = Movile(carPatent= request.POST["carPatent"], carBrand= request.POST["carBrand"], year=request.POST["carYear"])
@@ -66,10 +72,12 @@ def create_movile(request):
         return redirect("/")
     return render(request, "CRUD/create_movile.html")
 
+@login_required
 def home(request):
     doc=loader.get_template("index.html")
     doc2=doc.render()
     return HttpResponse (doc2)
+
 
 def search_user(request):
     if request.GET["email"]:
