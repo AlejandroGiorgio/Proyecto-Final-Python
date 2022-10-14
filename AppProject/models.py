@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 
 # Create your models here.
@@ -20,3 +21,7 @@ class Movile(models.Model):
     carPatent = models.CharField(max_length=30)
     carBrand = models.CharField(max_length=30)
     year = models.IntegerField()
+
+class Avatar(models.Model):
+    user=models.ForeignKey(User, on_delete = models.CASCADE)
+    imagen=models.ImageField(upload_to = "avatars", null = True, blank = True)

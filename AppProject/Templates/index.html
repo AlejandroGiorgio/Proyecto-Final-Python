@@ -32,6 +32,14 @@
         <li class="nav-item">
           <a class="nav-link" href="/AppProject/read_user">Delete & Edith Usuario</a>
         </li>
+        {% if not request.user.is_authenticated %}
+        <a class="btn btn-primary" href="/AppProject/login">INICIAR</a>
+        {% endif %}
+
+        {% if request.user.is_authenticated %}
+        <p class=""> Hola, {{user.username}}</p>
+        {% endif %}
+        
       </ul>
   </nav>
 

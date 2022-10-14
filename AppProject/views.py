@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.template import loader
 from pathlib import Path
 from AppProject.models import *
-from AppProject.forms import form_user, UserRegisterForm
+from AppProject.forms import form_user, UserRegisterForm, UserEditForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -125,3 +125,23 @@ def register(request):
 
     form = UserRegisterForm()
     return render(request, "register.html", {'form': form})
+
+@login_required
+def editUser(request):
+    user = request.user
+    if request.method == "POST":
+        myForm = UserEditForm(request.POST)
+        if myForm.is_valid:
+
+            data = myForm.cleaned_data
+
+        user.email = data ['email']
+        user.password1 = data ['password1']
+        user.password2 = data ['password2']
+        user.save()
+
+        return render(request, "/AppProject/login")
+    else:
+        myForm = UserEditForm(initial = {'email': user.email})
+
+    return render (request, "/AppProject/edithUser.html", {"myform":myForm, "user":user})
