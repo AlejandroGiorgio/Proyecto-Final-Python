@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.template import loader
 from pathlib import Path
 from AppProject.models import *
-from AppProject.forms import form_user
+from AppProject.forms import form_user, UserRegisterForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
@@ -113,13 +113,15 @@ def login_request(request):
     return render(request, 'login.html', {'form': form})
 
 def register(request):
-    form = UserCreationForm(request.POST)
+    form = UserRegisterForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
+            username = form.cleaned_data["username"]
             form.save()
             return redirect("/AppProject/login")
         else:
             return render(request, "register.html", {'form': form})
+   
 
-    form = UserCreationForm()
+    form = UserRegisterForm()
     return render(request, "register.html", {'form': form})
