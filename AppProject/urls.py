@@ -14,7 +14,10 @@ urlpatterns = [
     path('login/', login_request),
     path('register/', register),
     path('logout/', LogoutView.as_view(template_name = 'logout.html'), name="Logout" ),
-    path('editUser/', editUser)
+    path('profile/', profileView),
+    path('profile/editUser', editUser),
+    path('profile/changepass', changepass),
+    path('profile/addAvatar', SubmitAvatar)
 ]
 
 

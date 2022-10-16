@@ -5,10 +5,10 @@ from django.http import HttpResponse
 from django.template import loader
 from pathlib import Path
 from AppProject.models import *
-from AppProject.forms import form_user, UserRegisterForm, UserEditForm
+from AppProject.forms import form_user, UserRegisterForm, UserEditForm, ChangePasswordForm, AddAvatar
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 # Create your views here.
@@ -38,7 +38,7 @@ def update_user(request, user_id):
         
         if formulario.is_valid():
             informacion=formulario.cleaned_data
-            user.name=informacion['name']
+            user.username=informacion['name']
             user.lastName=informacion['lastName']
             user.email=informacion['email']
             user.save()
@@ -47,7 +47,7 @@ def update_user(request, user_id):
             return render(request, "CRUD/read_user.html", {"user": users})
             
     else:
-            formulario=form_user(initial={'name':user.name, 'lastName':user.lastName, 'email':user.email})
+            formulario=form_user(initial={'name':user.username, 'lastName':user.lastName, 'email':user.email})
     return render(request,"CRUD/update_user.html", {"formulario": formulario})
 
 @login_required
@@ -156,3 +156,54 @@ def editUser(request):
     else:
         form = UserEditForm(initial = {'email': user.email, 'username': user.username, 'first_name': user.first_name, 'last_name': user.last_name })
     return render(request, 'editUser.html', {'form': form, 'user':user})
+
+@login_required
+def profileView(request):
+    avatar = Avatar.objects.filter(user = request.user.id)
+    try:
+        avatar = avatar[0].image.url
+    except:
+        avatar = None
+    return render(request, 'profile.html', {'avatar': avatar})
+
+@login_required
+def changepass(request):
+    user = request.user
+    if request.method == 'POST':
+        form = ChangePasswordForm(data = request.POST, user = request.user)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            avatar = Avatar.objects.filter(user = request.user.id)
+            try:
+                avatar = avatar[0].image.url
+            except:
+                avatar = None
+            return render(request, 'profile.html', {'avatar': avatar})
+    else:
+        form = ChangePasswordForm(user = request.user)
+    return render(request, 'changepass.html', {'form': form, 'user': user})
+
+@login_required
+def SubmitAvatar (request):
+    if request.method == 'POST':
+        form =AddAvatar(request.POST, request.FILES)
+        print(form)
+        print(form.is_valid())
+        if form.is_valid():
+            user=User.objects.get(username=request.user)
+            avatar=Avatar(user=user, image=form.cleaned_data['avatar'], id=request.user.id)
+            avatar.save()
+            avatar = Avatar.objects.filter(user=request.user.id)
+            try:
+                avatar=avatar[0].image.url
+            except:
+                avatar= None
+            return render(request, 'profile.html', {'avatar':avatar})
+        else:
+            try:
+                avatar=Avatar.objects.filter(user = request.user.id)
+                form = AddAvatar()
+            except:
+                form = AddAvatar()
+        return render(request, 'addAvatar.html', {'form': form})

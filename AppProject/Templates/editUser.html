@@ -7,7 +7,7 @@
     <title>Editar Usuario</title>
 </head>
 <body>
-    <h1>Editar perfil de {{username}}</h1>
+    <h1>Editar perfil de {{user.username}}</h1>
     
     <br>
     
@@ -16,5 +16,12 @@
         {{ form.as_table }}
         </table>
         <input type="submit" value="Editar Perfil">
+    </form>
+<div>
+
+<a class="btn btn-success" style="text-decoration: none; color: rgb(248, 0, 0)" href="/AppProject/profile/changepass">Cambiar contraseña</a>    
+
+</div>
+
 </body>
 </html>
