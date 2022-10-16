@@ -7,11 +7,14 @@
     <title>Editar Usuario</title>
 </head>
 <body>
-    <h1>Editar perdil de {{username}}</h1>
+    <h1>Editar perfil de {{username}}</h1>
     
     <br>
-
-    <table>
-        {{ myForm.as_table }}
+    
+    <form method="POST"> {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Editar Perfil">
 </body>
 </html>

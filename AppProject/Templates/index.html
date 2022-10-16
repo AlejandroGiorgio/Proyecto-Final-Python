@@ -61,5 +61,14 @@
     {% endif %}
 </div>
 
+<div>
+
+  {% if request.user.is_authenticated %}
+  <p class=""> Hola, {{user.username}}</p>
+  <a href="/AppProject/editUser" class="btn btn-danger">EDITAR PERFIL</a>
+  {% endif %}
+
+</div>
+
 </body>
 </html>

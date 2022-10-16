@@ -10,6 +10,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 # Create your views here.
 
 @login_required
@@ -129,19 +130,29 @@ def register(request):
 @login_required
 def editUser(request):
     user = request.user
+    user_basic_info = User.objects.get(id = user.id)
     if request.method == "POST":
-        myForm = UserEditForm(request.POST)
-        if myForm.is_valid:
-
-            data = myForm.cleaned_data
-
-        user.email = data ['email']
-        user.password1 = data ['password1']
-        user.password2 = data ['password2']
-        user.save()
-
-        return render(request, "/AppProject/login")
+        form = UserEditForm(request.POST, instance = user)
+        if form.is_valid():
+            user_basic_info.username = form.cleaned_data.get ('username')
+            user_basic_info.email = form.cleaned_data.get ('email')
+            user_basic_info.first_name = form.cleaned_data.get ('first_name')
+            user_basic_info.last_name = form.cleaned_data.get ('last_name')
+            user_basic_info.save()
+            avatar = Avatar.objects.filter(user = request.user.id)
+            try:
+                avatar = avatar[0].image.url
+            except:
+                avatar = None
+            return render(request, 'index.html', {'avatar': avatar})
+        else:
+            avatar = Avatar.objects.filter(user = request.user.id)
+            try:
+                avatar = avatar[0].image.url
+            except:
+                avatar = None
+            return render(request, 'index.html', {'form':form, 'avatar': avatar})
+        
     else:
-        myForm = UserEditForm(initial = {'email': user.email})
-
-    return render (request, "/AppProject/edithUser.html", {"myform":myForm, "user":user})
+        form = UserEditForm(initial = {'email': user.email, 'username': user.username, 'first_name': user.first_name, 'last_name': user.last_name })
+    return render(request, 'editUser.html', {'form': form, 'user':user})
