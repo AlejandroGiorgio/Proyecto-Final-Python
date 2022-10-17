@@ -7,11 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    {% for for users in user %}
+    {% for for passengers in passenger %}
     <li>
-        {{users}}
+        {{passengers}}
         <a class="btn btn-warning">Edith</a>
-        <a href="/AppCoder/delete_user/{{user.email}}" class="btn btn-danger">Delete</a>
+        <a href="/AppCoder/delete_passenger/{{user.email}}" class="btn btn-danger">Delete</a>
     </li>
     {{% endfor %}}
 </body>

@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.template import loader
 from pathlib import Path
 from AppProject.models import *
-from AppProject.forms import form_user, UserRegisterForm, UserEditForm, ChangePasswordForm, AddAvatar
+from AppProject.forms import form_passenger, UserRegisterForm, UserEditForm, ChangePasswordForm, AddAvatar
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
@@ -14,48 +14,48 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 @login_required
-def create_user(request):
+def create_passenger(request):
     if request.method == 'POST':
-        user = User(name= request.POST["name"], lastName= request.POST["lastName"], email= request.POST["email"])
-        user.save()
-        users = User.objects.all()
-        return render(request, "CRUD/read_user.html", {"user": users})
+        passenger = Passenger(name= request.POST["name"], lastName= request.POST["lastName"], email= request.POST["email"])
+        passenger.save()
+        passengers = Passenger.objects.all()
+        return render(request, "CRUD/read_passenger.html", {"passenger": passengers})
         #return redirect("/")
 
-    return render(request, "CRUD/create_user.html")
+    return render(request, "CRUD/create_passenger.html")
     
 @login_required
-def read_user(request):
-    users = User.objects.all() #trae todo
-    return render (request, "CRUD/read_user.html", {"user":users})
+def read_passenger(request):
+    passengers = Passenger.objects.all() #trae todo
+    return render (request, "CRUD/read_passenger.html", {"passenger":passengers})
 
 @login_required
-def update_user(request, user_id):
-    user = User.objects.get(id=user_id)
+def update_passenger(request, passenger_id):
+    passenger = Passenger.objects.get(id=passenger_id)
 
     if request.method == 'POST':
-        formulario=form_user(request.POST)
+        formulario=form_passenger(request.POST)
         
         if formulario.is_valid():
             informacion=formulario.cleaned_data
-            user.username=informacion['name']
-            user.lastName=informacion['lastName']
-            user.email=informacion['email']
-            user.save()
-            read_user(request)
-            users=User.objects.all()
-            return render(request, "CRUD/read_user.html", {"user": users})
+            passenger.username=informacion['name']
+            passenger.lastName=informacion['lastName']
+            passenger.email=informacion['email']
+            passenger.save()
+            read_passenger(request)
+            passengers=Passenger.objects.all()
+            return render(request, "CRUD/read_passenger.html", {"passenger": passengers})
             
     else:
-            formulario=form_user(initial={'name':user.username, 'lastName':user.lastName, 'email':user.email})
-    return render(request,"CRUD/update_user.html", {"formulario": formulario})
+            formulario=form_passenger(initial={'name':passenger.username, 'lastName':passenger.lastName, 'email':passenger.email})
+    return render(request,"CRUD/update_passenger.html", {"formulario": formulario})
 
 @login_required
-def delete_user(request, user_id):
-    user = User.objects.get(id = user_id)
-    user.delete()
-    users = User.objects.all()    
-    return render(request, "CRUD/read_user.html", {"user": users})
+def delete_passenger(request, passenger_id):
+    passenger = Passenger.objects.get(id = passenger_id)
+    passenger.delete()
+    passengers = Passenger.objects.all()    
+    return render(request, "CRUD/read_passenger.html", {"passenger": passengers})
 
 @login_required
 def create_driver(request):
@@ -80,11 +80,11 @@ def home(request):
     return HttpResponse (doc2)
 
 
-def search_user(request):
+def search_passenger(request):
     if request.GET["email"]:
         email = request.GET["email"]
-        user = User.objects.filter(email__icontains = email) 
-        return render(request, "index.html", {"users": user})
+        passenger = Passenger.objects.filter(email__icontains = email) 
+        return render(request, "index.html", {"passengers": passenger})
     else:
         respuesta = "No hay registro"
     return HttpResponse(respuesta)

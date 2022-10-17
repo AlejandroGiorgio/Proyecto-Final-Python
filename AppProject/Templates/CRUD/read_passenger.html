@@ -20,11 +20,11 @@
   </nav>
   
 
-{% for users in user %}
+{% for passengers in passenger %}
     <li>
-        {{users}}
-        <a href="/AppProject/update_user/{{users.id}}" class="btn btn-warning">Edith</a>
-        <a href="/AppProject/delete_user/{{users.id}}" class="btn btn-danger">Delete</a>
+        {{passengers}}
+        <a href="/AppProject/update_passenger/{{passengers.id}}" class="btn btn-warning">Edith</a>
+        <a href="/AppProject/delete_passenger/{{passengers.id}}" class="btn btn-danger">Delete</a>
     </li>
 {% endfor %}
 </body>

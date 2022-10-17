@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 
-class form_user(forms.Form):
+class form_passenger(forms.Form):
     name = forms.CharField(max_length=30)
     lastName = forms.CharField(max_length=30)
     email = forms.EmailField()
