@@ -16,7 +16,7 @@
   <!--<a class="btn btn-success" href="/AppProject/read_user">Interfaz de la webpage</a>-->
 
 
-
+  
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 
     <!-- Links -->
@@ -59,23 +59,25 @@
         <li>
           {% if request.user.is_authenticated %}
             <p class="" id="estiloMensajeLogin"> Hola, {{user.username}}</p>
-          {% endif %}
+          
         </li>
-        
+        <li>
+          <a href="/AppProject/profile/editUser" class="btn btn-danger" id="estiloBotonesEditarPerf">EDITAR PERFIL</a>
+          
+        </li>
+        <li>
+          <a class="btn btn-success" style="text-decoration: none; color: rgb(17, 0, 255)" href="/AppProject/profile/addAvatar">Cambiar imagen de perfil</a>
+        </li>
+          {% endif %}
       </ul>
   </nav>
 
   
-    
+  
 
-<div>
+  
 
-  {% if request.user.is_authenticated %}
-  <a href="/AppProject/profile/editUser" class="btn btn-danger" id="estiloBotonesEditarPerf">EDITAR PERFIL</a>
-  <a class="btn btn-success" style="text-decoration: none; color: rgb(17, 0, 255)" href="/AppProject/profile/addAvatar">Cambiar imagen de perfil</a>
-  {% endif %}
-
-</div>
+  
 
 </body>
 </html>
