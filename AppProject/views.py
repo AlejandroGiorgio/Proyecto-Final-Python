@@ -16,9 +16,9 @@ from django.contrib.auth.models import User
 @login_required
 def create_user(request):
     if request.method == 'POST':
-        user = User(name= request.POST["name"], lastName= request.POST["lastName"], email= request.POST["email"])
+        user = Passenger(name= request.POST["name"], lastName= request.POST["lastName"], email= request.POST["email"])
         user.save()
-        users = User.objects.all()
+        users = Passenger.objects.all()
         return render(request, "CRUD/read_user.html", {"user": users})
         #return redirect("/")
 
@@ -26,12 +26,12 @@ def create_user(request):
     
 @login_required
 def read_user(request):
-    users = User.objects.all() #trae todo
+    users = Passenger.objects.all() #trae todo
     return render (request, "CRUD/read_user.html", {"user":users})
 
 @login_required
 def update_user(request, user_id):
-    user = User.objects.get(id=user_id)
+    user = Passenger.objects.get(id=user_id)
 
     if request.method == 'POST':
         formulario=form_user(request.POST)
@@ -43,7 +43,7 @@ def update_user(request, user_id):
             user.email=informacion['email']
             user.save()
             read_user(request)
-            users=User.objects.all()
+            users=Passenger.objects.all()
             return render(request, "CRUD/read_user.html", {"user": users})
             
     else:
@@ -52,9 +52,9 @@ def update_user(request, user_id):
 
 @login_required
 def delete_user(request, user_id):
-    user = User.objects.get(id = user_id)
+    user = Passenger.objects.get(id = user_id)
     user.delete()
-    users = User.objects.all()    
+    users = Passenger.objects.all()    
     return render(request, "CRUD/read_user.html", {"user": users})
 
 @login_required
