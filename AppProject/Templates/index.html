@@ -57,21 +57,20 @@
         </li>
         <li>
           {% if request.user.is_authenticated %}
-            <p class=""> Hola, {{user.username}}</p>
+            <p class="" id="estiloMensajeLogin"> Hola, {{user.username}}</p>
           {% endif %}
         </li>
         
       </ul>
   </nav>
 
-  <div>
+  
     
 
 <div>
 
   {% if request.user.is_authenticated %}
-  <p class=""> Hola, {{user.username}}</p>
-  <a href="/AppProject/profile/editUser" class="btn btn-danger">EDITAR PERFIL</a>
+  <a href="/AppProject/profile/editUser" class="btn btn-danger" id="estiloBotonesEditarPerf">EDITAR PERFIL</a>
   <a class="btn btn-success" style="text-decoration: none; color: rgb(17, 0, 255)" href="/AppProject/profile/addAvatar">Cambiar imagen de perfil</a>
   {% endif %}
 
