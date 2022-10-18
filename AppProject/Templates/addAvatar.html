@@ -4,20 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Avatar</title>
 </head>
 <body>
-    <form method="POST">
-        {% csrf_token %}
+    <form action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" >Iniciar Sesion</button>
+        <input type="submit" value="Aceptar">
     </form>
-
-Si aun no estas registrado puedes hacerlo aqui:
-<br>
-<br>
-<br>
-<a href="/AppProject/register" class="btn btn-danger">REGISTRARSE</a>
-
 </body>
 </html>

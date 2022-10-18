@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+</head>
+<body>
+    <h1>Editar perfil de {{user.username}}</h1>
+    
+    <br>
+    
+    <form method="POST"> {% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <input type="submit" value="Editar Perfil">
+    </form>
+<div>
+
+<a class="btn btn-success" style="text-decoration: none; color: rgb(248, 0, 0)" href="/AppProject/profile/changepass">Cambiar contraseña</a>    
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0; 
+}
+  
+html {
+    font-size: 100%;
+    font-family: 'Oswald', sans-serif; }
+  
+body{
+    background-position: center center;
+    background-size: cover;
+    background-color: dimgrey;
+    height: 140vh;
+
+    }
+
+#colorLegend{
+    color: brown;
+    font-size: 75px;
+    font-style: oblique;
+    font-weight: bold;
+}
+ 
+#estiloMensajeLogin{
+    color: aliceblue;
+    margin-left: 50%;
+}
+#estiloBotonesEditarPerf{
+margin-left: 35%;
+}
+#botonIniciar{
+    margin-left: 50%;
+}
+
+

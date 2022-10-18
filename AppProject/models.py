@@ -1,8 +1,10 @@
+from distutils.command.upload import upload
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class User(models.Model):
+class Passenger(models.Model):
     name = models.CharField(max_length=30)
     lastName = models.CharField(max_length=30)
     email = models.EmailField()
@@ -20,3 +22,7 @@ class Movile(models.Model):
     carPatent = models.CharField(max_length=30)
     carBrand = models.CharField(max_length=30)
     year = models.IntegerField()
+
+class Avatar(models.Model):
+    user=models.ForeignKey(User, on_delete = models.CASCADE)
+    imagen=models.ImageField(upload_to = "avatars", null = True, blank = True)
