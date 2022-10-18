@@ -20,5 +20,12 @@ body{
     font-weight: bold;
 }
  
+#estiloMensajeLogin{
+    color: aliceblue;
+    z-index:inherit;
+}
+#estiloBotonesEditarPerf{
+margin-left: 35%;
+}
 
 
