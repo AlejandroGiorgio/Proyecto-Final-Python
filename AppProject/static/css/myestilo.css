@@ -22,10 +22,13 @@ body{
  
 #estiloMensajeLogin{
     color: aliceblue;
-    z-index:inherit;
+    margin-left: 50%;
 }
 #estiloBotonesEditarPerf{
 margin-left: 35%;
+}
+#botonIniciar{
+    margin-left: 50%;
 }
 
 
