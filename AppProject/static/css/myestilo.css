@@ -8,8 +8,10 @@ html {
     font-family: 'Oswald', sans-serif; }
   
 body{
-      background-position: center center;
-      background-size: cover;
+    background-position: center center;
+    background-size: cover;
+    background-color: dimgrey;
+    height: 140vh;
 
     }
 
