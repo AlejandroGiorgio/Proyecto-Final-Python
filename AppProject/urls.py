@@ -17,7 +17,8 @@ urlpatterns = [
     path('profile/', profileView),
     path('profile/editUser', editUser),
     path('profile/changepass', changepass),
-    path('profile/addAvatar', SubmitAvatar)
+    path('profile/addAvatar', SubmitAvatar),
+    path('aboutus/', aboutus),
 ]
 
 

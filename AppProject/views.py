@@ -205,3 +205,6 @@ def SubmitAvatar (request):
         except:
             form = AddAvatar()
     return render(request, 'addAvatar.html', {'form': form})
+@login_required
+def aboutus(request):
+    return render (request, 'aboutus.html')
