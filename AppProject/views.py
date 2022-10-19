@@ -187,23 +187,21 @@ def changepass(request):
 @login_required
 def SubmitAvatar (request):
     if request.method == 'POST':
-        form =AddAvatar(request.POST, request.FILES)
-        print(form)
-        print(form.is_valid())
+        form = AddAvatar (request.POST, request.FILES)
         if form.is_valid():
             user=User.objects.get(username=request.user)
-            avatar=Avatar(user=user, image=form.cleaned_data['avatar'], id=request.user.id)
+            avatar = Avatar(user = user, image = form.cleaned_data['avatar'], id = request.user.id)
             avatar.save()
-            avatar = Avatar.objects.filter(user=request.user.id)
+            avatar = Avatar.objects.filter(user = request.user.id)
             try:
                 avatar=avatar[0].image.url
             except:
                 avatar= None
-            return render(request, 'profile.html', {'avatar':avatar})
-        else:
-            try:
-                avatar=Avatar.objects.filter(user = request.user.id)
-                form = AddAvatar()
-            except:
-                form = AddAvatar()
-        return render(request, 'addAvatar.html', {'form': form})
+            return render(request, 'index.html', {'avatar':avatar})
+    else:
+        try:
+            avatar=Avatar.objects.filter(user = request.user.id)
+            form = AddAvatar()
+        except:
+            form = AddAvatar()
+    return render(request, 'addAvatar.html', {'form': form})

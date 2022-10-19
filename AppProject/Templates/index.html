@@ -64,6 +64,9 @@
         <li>
           {% if request.user.is_authenticated %}
             <p class="" id="estiloMensajeLogin"> Hola, {{user.username}}</p>
+            <p class="" style="position: absolute; right: 200px">
+              <img src="{{ avatar }}" width="40px">
+            <a class="btn btn-primary" id="botonIniciar" href="/AppProject/logout">LOGOUT</a>
           {% endif %}
         </li>
       </ul>
