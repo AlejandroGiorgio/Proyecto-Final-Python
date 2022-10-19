@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
     <link rel="stylesheet" href="{%static 'css/myestilo.css'%}">
    
-    <title>AppProject</title>
+    <title>
+      {% block title %} AppProject {% endblock %}
+    </title>
 </head>
 
 <body>
@@ -21,6 +23,9 @@
 
     <!-- Links -->
       <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/AppProject/profile">Home</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="/AppProject/create_user">Agregar usuario</a>
         </li>
@@ -61,24 +66,17 @@
             <p class="" id="estiloMensajeLogin"> Hola, {{user.username}}</p>
           {% endif %}
         </li>
-        <li>
-          {% if request.user.is_authenticated %}
-          <a href="/AppProject/profile/editUser" class="btn btn-danger" id="estiloBotonesEditarPerf">EDITAR PERFIL</a>
-          {% endif %}
-        </li>
-        <li>
-          {% if request.user.is_authenticated %}
-          <a class="btn btn-success" style="text-decoration: none; color: rgb(17, 0, 255)" href="/AppProject/profile/addAvatar">Cambiar imagen de perfil</a>
-          {% endif %}
-        </li>
-        
       </ul>
   </nav>
 
-  
-    
-
-
+  {% block content %}
+  <div>
+  {% if request.user.is_authenticated %}
+      <a href="/AppProject/profile/editUser" class="btn btn-danger" id="estiloBotonesEditarPerf">EDITAR PERFIL</a>
+      <a class="btn btn-success" style="text-decoration: none; color: rgb(17, 0, 255)" href="/AppProject/profile/addAvatar">Cambiar imagen de perfil</a>
+  {% endif %}
+  </div>
+  {% endblock %}
 
 </body>
 </html>

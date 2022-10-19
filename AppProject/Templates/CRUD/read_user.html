@@ -1,33 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "index.html" %}
     {% load static %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
-    <title>USER</title>
-</head>
-<body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+   
+    
+    {% block title %} PASAJERO {% endblock %}
+    
 
-    <!-- Links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/AppProject/profile">HOME</a>
-        </li>
-      </ul>
-  </nav>
   
-
+{% block content %}
 {% for users in user %}
     <li>
         {{users}}
-        <a href="/AppProject/update_user/{{users.id}}" class="btn btn-warning">Edith</a>
-        <a href="/AppProject/delete_user/{{users.id}}" class="btn btn-danger">Delete</a>
+        <a href="/AppProject/update_user/{{users.id}}"  class="btn btn-warning">Edith</a>
+        <a href="/AppProject/delete_user/{{users.id}}"  class="btn btn-danger">Delete</a>
     </li>
 {% endfor %}
-</body>
+{% endblock %}
 
-</html>
 

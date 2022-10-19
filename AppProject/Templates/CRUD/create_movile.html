@@ -1,25 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "index.html" %}
     {% load static %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
-    <link rel="stylesheet" href="{%static 'css/estilos.css'%}">
     
-    <title>REGISTRAR AUTOMOVIL</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    {% block title %} REGISTRAR AUTOMOVIL {% endblock %}
 
-        <!-- Links -->
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/AppProject/profile">HOME</a>
-            </li>
-          </ul>
-      </nav>
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -61,6 +45,5 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+{% endblock %} 
 

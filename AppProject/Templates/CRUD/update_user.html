@@ -9,11 +9,17 @@
     <title>UPDATE USER</title>
 </head>
 <body>
-    <form method="POST">{% csrf_token %}
+
+
+
+    <form method="POST"> {% csrf_token %}
         <table>
             {{ formulario.as_table }}
         </table>
         <button type="submit" class="btn btn-success" >Registrar</button>
     </form>
+
+
+
 </body>
 </html>
