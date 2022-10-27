@@ -1,7 +1,8 @@
+from logging import PlaceHolder
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
-
+from AppProject.models import Post
 class form_user(forms.Form):
     name = forms.CharField(max_length=30)
     lastName = forms.CharField(max_length=30)
@@ -55,3 +56,10 @@ class ChangePasswordForm(PasswordChangeForm):
 
 class AddAvatar (forms.Form):
     avatar = forms.ImageField()
+
+class PostForm (forms.ModelForm):
+    content = forms.CharField (label="", widget=forms.Textarea(attrs={"rows": 2, "placeholder": "Postea tu viaje!"}), required=True)
+
+    class Meta:
+        model = Post
+        fields = ["content"]

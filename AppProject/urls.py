@@ -19,6 +19,8 @@ urlpatterns = [
     path('profile/changepass', changepass),
     path('profile/addAvatar', SubmitAvatar),
     path('aboutus/', aboutus),
+    path('profile/post/', post),
+    path('profile/feed/', feed),
 ]
 
 

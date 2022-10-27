@@ -1,16 +1,19 @@
+from multiprocessing import context
 from operator import index
+from pyexpat.errors import messages
 from unicodedata import name
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from pathlib import Path
 from AppProject.models import *
-from AppProject.forms import form_user, UserRegisterForm, UserEditForm, ChangePasswordForm, AddAvatar
+from AppProject.forms import PostForm, form_user, UserRegisterForm, UserEditForm, ChangePasswordForm, AddAvatar
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
 # Create your views here.
 
 @login_required
@@ -208,3 +211,23 @@ def SubmitAvatar (request):
 @login_required
 def aboutus(request):
     return render (request, 'aboutus.html')
+
+@login_required
+def post(request):
+    current_user = get_object_or_404(User, pk=request.user.pk)
+    if request.method == "POST":
+        form =PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+            return render(request, 'feed.html')
+    else:
+        form = PostForm()
+    return render (request, 'post.html', {'form': form})
+
+@login_required
+def feed(request):
+    posts = Post.objects.all()
+    context={'posts': posts}
+    return render(request, 'feed.html', context)
