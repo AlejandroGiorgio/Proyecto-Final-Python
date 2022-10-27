@@ -41,7 +41,7 @@ def update_user(request, user_id):
         
         if formulario.is_valid():
             informacion=formulario.cleaned_data
-            user.username=informacion['name']
+            user.name=informacion['name']
             user.lastName=informacion['lastName']
             user.email=informacion['email']
             user.save()
@@ -50,7 +50,7 @@ def update_user(request, user_id):
             return render(request, "CRUD/read_user.html", {"user": users})
             
     else:
-            formulario=form_user(initial={'name':user.username, 'lastName':user.lastName, 'email':user.email})
+            formulario=form_user(initial={'name':user.name, 'lastName':user.lastName, 'email':user.email})
     return render(request,"CRUD/update_user.html", {"formulario": formulario})
 
 @login_required
