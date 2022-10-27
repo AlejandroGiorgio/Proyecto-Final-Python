@@ -16,7 +16,7 @@ body{
     }
 
 #colorLegend{
-    color: brown;
+    color:aliceblue;
     font-size: 75px;
     font-style: oblique;
     font-weight: bold;
@@ -30,9 +30,17 @@ body{
 margin-left: 35%;
 }
 #botonIniciar{
-    margin-left: 50%;
+    margin-left: 10%;
 }
 #estiloBusqueda{
     margin-left: 50%;
+}
+#posicionAvatar{
+    margin-right: 500px;
+}
+#fuenteMuro{
+    color:aliceblue;
+    font-size: medium;
+    font-family: 'Courier New', Courier, monospace;
 }
 

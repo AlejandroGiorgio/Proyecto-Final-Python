@@ -64,22 +64,28 @@
           {% endif %}
         </li>
         <li>
+        {% if request.user.is_authenticated %}
+          <p class="nav-item" id="posicionAvatar" style="position: absolute; right: 300px"></p>
+            <img src="{{ avatar }}" width="60px">
+        {% endif %}
+        </li>
+        <li>
           {% if request.user.is_authenticated %}
-            <p class="" id="estiloMensajeLogin"> Hola, {{user.username}}</p>
-            <p class="" style="position: absolute; right: 200px">
-              <img src="{{ avatar }}" width="60px">
             <a class="btn btn-primary" id="botonIniciar" href="/AppProject/logout">LOGOUT</a>
           {% endif %}
         </li>
+        
       </ul>
   </nav>
+  
+  
 
   {% block content %}
   <div>
   {% if request.user.is_authenticated %}
       <a href="/AppProject/profile/editUser" class="btn btn-danger" id="estiloBotonesEditarPerf">EDITAR PERFIL</a>
       <a class="btn btn-success" style="text-decoration: none; color: rgb(17, 0, 255)" href="/AppProject/profile/addAvatar">Cambiar imagen de perfil</a>
-      <h1><a class="btn btn-primary" id="botonIniciar" href="/AppProject/profile/feed">MURO DE VIAJES</a></h1>
+      <h1><a class="btn btn-primary"  href="/AppProject/profile/feed">MURO DE VIAJES</a></h1>
   {% endif %}
   </div>
   {% endblock %}
